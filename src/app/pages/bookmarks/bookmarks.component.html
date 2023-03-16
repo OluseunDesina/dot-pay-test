@@ -1,0 +1,10 @@
+<app-base-layout>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <ng-container *ngFor="let article of articles; let i=index">
+        <hr *ngIf="i>0" class="hz" aria-hidden="true">
+        <app-article [showActionButtons]="false" [article]="article" [bookmarks]="bookmarks" [index]="i" (addToBookmark)="onAddToBookmark($event)"></app-article>
+      </ng-container>
+    </div>
+  </div>
+</app-base-layout>

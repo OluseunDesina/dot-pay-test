@@ -1,0 +1,50 @@
+<div class="news-card card">
+  <div class="card-body">
+    <p class="d-flex align-items-center">
+      <span class="material-symbols-outlined me-2">
+        account_circle
+      </span>
+      <span class="me-1">
+        {{article?.author || "Annonymous"}}
+      </span> .
+      <span class="small text-muted ms-1">
+        {{article?.publishedAt | date: "medium"}}
+      </span>
+    </p>
+    <div class="row align-items-center align-items-md-end">
+      <div class="col-9">
+        <h5 class="card-title">{{article?.title}}</h5>
+        <p class="card-text d-none d-md-block" [innerHTML]="article?.content | slice : 0 : 200"></p>
+      </div>
+      <div class="col-3">
+        <img [alt]="article?.description" [src]="article?.urlToImage" alt="" class="img-fluid rounded">
+      </div>
+    </div>
+    <div class="col col-md-8 d-flex justify-content-between">
+      <div>
+        <span class="badge text-bg-secondary">{{article?.source?.name}}</span>
+      </div>
+
+
+      <div *ngIf="showActionButtons" class="action-buttons">
+        <a [ngClass]="{'text-secondary': bookmarks.includes(i)}" (click)="onAddToBookmark(i)"
+          class="card-link">
+          <span class="material-symbols-outlined">
+            {{bookmarks.includes(i) ? 'bookmark_added' : 'bookmark_add'}}
+          </span>
+          <!-- <ng-container *ngIf="i >1; else elseTemplate">
+              <span class="material-symbols-outlined">
+              bookmark_add
+              </span>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <span class="material-symbols-outlined">
+              bookmark_added
+              </span>
+            </ng-template> -->
+
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
