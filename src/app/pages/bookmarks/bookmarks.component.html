@@ -1,10 +1,19 @@
 <app-base-layout>
   <div class="row">
     <div class="col-md-10 mx-auto">
-      <ng-container *ngFor="let article of articles; let i=index">
-        <hr *ngIf="i>0" class="hz" aria-hidden="true">
-        <app-article [showActionButtons]="false" [article]="article" [bookmarks]="bookmarks" [index]="i" (addToBookmark)="onAddToBookmark($event)"></app-article>
+      <ng-container *ngIf="bookmarks.length > 0 && isLoading == false; else elseTemplate">
+        <ng-container *ngFor="let article of bookmarks; let i=index">
+          <hr *ngIf="i>0" class="hz" aria-hidden="true">
+          <app-article [showActionButtons]="false" [article]="article" [bookmarks]="bookmarks" [index]="i"
+            (addToBookmark)="onAddToBookmark($event)"></app-article>
+        </ng-container>
       </ng-container>
+      <ng-template #elseTemplate>
+        <app-loading-data *ngIf="isLoading==true"></app-loading-data>
+        <app-no-data *ngIf="bookmarks.length == 0 && isLoading == false">
+          <h1 class="text-center">No article in your bookmarks to be displayed, kindly add articles to bookmark</h1>
+        </app-no-data>
+      </ng-template>
     </div>
   </div>
 </app-base-layout>

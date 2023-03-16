@@ -12,7 +12,9 @@
 
       <ng-template #elseTemplate>
         <app-loading-data *ngIf="isLoading==true"></app-loading-data>
-        <app-no-data *ngIf="articles.length == 0 && isLoading == false"></app-no-data>
+        <app-no-data *ngIf="articles.length == 0 && isLoading == false">
+          <h1 class="text-center">No data to be displayed, kindly refresh page</h1>
+        </app-no-data>
       </ng-template>
 
     </div>
