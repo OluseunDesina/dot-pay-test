@@ -10,7 +10,7 @@ import { Article } from '../../models/news';
 })
 export class BookmarksComponent implements OnInit {
   bookmarks: number[] = JSON.parse(localStorage.getItem('bookmark')) || [];
-  isLoading: boolean;
+  isLoading: boolean =true;
   articles: Article[];
 
   constructor(
