@@ -14,7 +14,7 @@ export class AppService {
     private http: HttpClient
   ) { }
 
-  getSearchApi(searchParam ="") {
+  getSearchApi(searchParam ="bitcoin") {
     return this.http.get<NewsBase>(`${this.url}?apiKey=${this.apiKey}${searchParam ? "&q=" + searchParam : ""}`)
 
   }
