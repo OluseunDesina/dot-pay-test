@@ -1,11 +1,20 @@
 <app-base-layout>
   <div id="liveAlertPlaceholder"></div>
-    <div class="row">
-      <div class="col-md-10 mx-auto">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <ng-container *ngIf="articles.length > 0 && isLoading == false; else elseTemplate">
         <ng-container *ngFor="let article of articles; let i=index">
           <hr *ngIf="i>0" class="hz" aria-hidden="true">
-          <app-article [article]="article" [bookmarks]="bookmarks" [index]="i" (addToBookmark)="onAddToBookmark($event)"></app-article>
+          <app-article [article]="article" [bookmarks]="bookmarks" [index]="i"
+            (addToBookmark)="onAddToBookmark($event)"></app-article>
         </ng-container>
-      </div>
+      </ng-container>
+
+      <ng-template #elseTemplate>
+        <app-loading-data *ngIf="isLoading==true"></app-loading-data>
+        <app-no-data *ngIf="articles.length == 0 && isLoading == false"></app-no-data>
+      </ng-template>
+
     </div>
+  </div>
 </app-base-layout>
